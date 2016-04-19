@@ -7,10 +7,38 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="theultimatedomain.com.moosecat.MainActivity">
+    tools:context="theultimatedomain.com.moosecat.MainActivity"
+    android:background="#88de88">
 
     <TextView
+        android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:text="MOOSECAT"
+        android:layout_centerHorizontal="true"
+        android:textSize="48sp"
+        android:textStyle="bold"
+        android:textColor="#000000"/>
+
+    <Button
+        android:id="@+id/play_btn"
+        android:layout_below="@+id/title"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="64dp"
+        android:layout_width="200dp"
+        android:layout_height="80dp"
+        android:text="PLAY"
+        android:textSize="32sp"
+        android:background="@drawable/button_selector"/>
+
+    <Button
+        android:id="@+id/options_btn"
+        android:layout_below="@+id/play_btn"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:layout_width="200dp"
+        android:layout_height="80dp"
+        android:text="OPTIONS"
+        android:textSize="32sp"
+        android:background="@drawable/button_selector"/>
 </RelativeLayout>
