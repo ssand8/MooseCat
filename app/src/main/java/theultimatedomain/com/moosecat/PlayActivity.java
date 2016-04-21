@@ -2,7 +2,6 @@ package theultimatedomain.com.moosecat;
 
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.provider.Telephony;
 import android.support.annotation.Nullable;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -76,7 +75,7 @@ public class PlayActivity extends AppCompatActivity {
         public void run() {
             getRandomImage();
 
-            mImageHandler.postDelayed(mImageTimer, 1000);
+            mImageHandler.postDelayed(mImageTimer, 3000);
         }
     };
 
