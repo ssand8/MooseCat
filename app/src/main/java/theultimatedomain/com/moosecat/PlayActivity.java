@@ -1,5 +1,6 @@
 package theultimatedomain.com.moosecat;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -26,6 +27,7 @@ public class PlayActivity extends AppCompatActivity {
     {
         mMooseCat = (ImageView) findViewById(R.id.moose_cat_img);
 
+
     }
 
     private void setupClickListeners()
@@ -33,6 +35,7 @@ public class PlayActivity extends AppCompatActivity {
         mMooseCat.setOnTouchListener(new OnSwipeTouchListener(PlayActivity.this) {
             public void onSwipeTop() {
                 Toast.makeText(PlayActivity.this, "top", Toast.LENGTH_SHORT).show();
+                mMooseCat.setImageResource(R.drawable.cat);
             }
             public void onSwipeRight() {
                 Toast.makeText(PlayActivity.this, "right", Toast.LENGTH_SHORT).show();
