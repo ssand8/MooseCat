@@ -1,6 +1,5 @@
 package theultimatedomain.com.moosecat;
 
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.os.Handler;
@@ -81,12 +80,14 @@ public class PlayActivity extends AppCompatActivity {
 
     private void getRandomImage() {
         Random random = new Random();
-        int imageNumber = random.nextInt(3);
+        int imageNumber = random.nextInt(4);
 
-        if (imageNumber == 2) {
+        if (imageNumber == 0) {
             mMooseCat.setImageResource(R.drawable.cat);
-        } else if (imageNumber > 0 && imageNumber < 2) {
+        } else if (imageNumber == 1) {
             mMooseCat.setImageResource(R.drawable.moose);
+        } else if (imageNumber == 2) {
+            mMooseCat.setImageResource(R.drawable.moose_cat);
         }
     }
 }
