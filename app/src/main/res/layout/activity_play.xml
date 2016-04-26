@@ -3,20 +3,65 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/score_text"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
-        android:textSize="48sp"
-        android:textStyle="bold"
-        android:text="0"/>
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/score_text"
+            android:textSize="48sp"
+            android:textStyle="bold"
+            android:text="Score:"/>
+
+        <TextView
+            android:id="@+id/score_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:textSize="48sp"
+            android:textStyle="bold"
+            android:text="0"/>
+
+
+    </LinearLayout>
+
+
 
     <ImageView
         android:id="@+id/moose_cat_img"
         android:layout_width="250dp"
         android:layout_height="200dp"
         android:layout_centerInParent="true"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center_horizontal"
+        android:layout_marginBottom="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/score_text"
+            android:textSize="48sp"
+            android:textStyle="bold"
+            android:text="Lives:"/>
+
+        <TextView
+            android:id="@+id/lives_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:textSize="48sp"
+            android:textStyle="bold"
+            android:text="0"/>
+
+    </LinearLayout>
+
 
 </RelativeLayout>

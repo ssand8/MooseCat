@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">MooseCat</string>
+    <string name="tap">tap</string>
+    <string name="swipe">swipe</string>
 </resources>
