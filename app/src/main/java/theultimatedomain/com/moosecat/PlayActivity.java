@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -82,11 +84,20 @@ public class PlayActivity extends AppCompatActivity {
         Random random = new Random();
         int imageNumber = random.nextInt(4);
 
+        Animation fadeIn = AnimationUtils.loadAnimation(PlayActivity.this, R.anim.fade_in);
+        // Animation fadeOut = AnimationUtils.loadAnimation(PlayActivity.this, R.anim.fade_out);
+
         if (imageNumber == 0) {
+            mMooseCat.startAnimation(fadeIn);
+
             mMooseCat.setImageResource(R.drawable.cat);
         } else if (imageNumber == 1) {
+            mMooseCat.startAnimation(fadeIn);
+
             mMooseCat.setImageResource(R.drawable.moose);
         } else if (imageNumber == 2) {
+            mMooseCat.startAnimation(fadeIn);
+
             mMooseCat.setImageResource(R.drawable.moose_cat);
         }
     }
