@@ -1,55 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/start_screen_wood">
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:gravity="center_horizontal">
+        android:layout_marginTop="30dp"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal"
+        android:background="@drawable/timer_background"
+        android:id="@+id/timer">
+
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_toLeftOf="@+id/score_text"-->
+            <!--android:textSize="48sp"-->
+            <!--android:textColor="#FF0000"-->
+            <!--android:textStyle="bold"-->
+            <!--android:text="Score:" />-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/score_text"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_centerHorizontal="true"-->
+            <!--android:textSize="48sp"-->
+            <!--android:textStyle="bold"-->
+            <!--android:text="0"/>-->
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toLeftOf="@+id/score_text"
-            android:textSize="48sp"
-            android:textStyle="bold"
-            android:text="Score:"/>
+            android:id="@+id/timer_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
 
-        <TextView
-            android:id="@+id/score_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:textSize="48sp"
-            android:textStyle="bold"
-            android:text="0"/>
+            android:text="00:00"
+            android:textSize="100px"
+            android:textColor="#FF0000"
+            android:padding="30px"
+            android:textAlignment="center"/>
 
 
     </LinearLayout>
 
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="210dp"
+        android:layout_below="@id/timer"
+        android:layout_marginTop="45dp"
+        android:src="@drawable/blue_square"
+        android:scaleType="centerCrop"
+        android:id="@+id/blue_view"/>
 
     <ImageView
         android:id="@+id/moose_cat_img"
-        android:layout_width="250dp"
-        android:layout_height="200dp"
-        android:layout_centerInParent="true"/>
+        android:layout_width="wrap_content"
+        android:layout_height="280dp"
+        android:layout_alignBottom="@id/blue_view"
+        android:layout_centerInParent="true"
+        android:src="@drawable/moose"
+        android:scaleType="centerInside"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/blue_view"
         android:gravity="center_horizontal"
-        android:layout_marginBottom="16dp">
+        android:padding="10dp"
+        android:background="#000000"
+        android:id="@+id/lives_layout">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toLeftOf="@+id/score_text"
             android:textSize="48sp"
             android:textStyle="bold"
+            android:textColor="#FFFFFF"
             android:text="Lives:"/>
 
         <TextView
@@ -59,23 +90,42 @@
             android:layout_centerHorizontal="true"
             android:textSize="48sp"
             android:textStyle="bold"
+            android:textColor="#FFFFFF"
             android:text="0"/>
 
     </LinearLayout>
 
-
-    <TextView
-        android:id="@+id/timer_view"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/lives_layout"
+        android:orientation="horizontal"
+        android:gravity="center">
 
-        android:text="00:00"
-        android:textSize="200px"
-        android:textColor="#504550"
-        android:padding="50px"
-        android:textAlignment="center"/>
+        <View
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/active_life"/>
 
+        <View
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/active_life"/>
 
+        <View
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/active_life"/>
+
+        <View
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/active_life"/>
+    </LinearLayout>
 
 </RelativeLayout>
 

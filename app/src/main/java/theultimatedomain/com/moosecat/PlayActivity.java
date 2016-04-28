@@ -331,7 +331,7 @@ public class PlayActivity extends AppCompatActivity {
         } else if (value == 3) {
             mMooseCat.startAnimation(fadeIn);
 
-            mMooseCat.setImageResource(R.drawable.moose_cat);
+            mMooseCat.setImageResource(R.drawable.moosecat);
         }
     }
 
