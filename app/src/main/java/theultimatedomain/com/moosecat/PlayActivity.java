@@ -341,6 +341,10 @@ public class PlayActivity extends AppCompatActivity {
             if (mStartTime > 0){
                 mStartTime -= 1;
 
+                if (mStartTime == 0){
+                    gameOver();
+                }
+
                 mTimerView.setText(getFormattedtime(mStartTime));
 
                 mHandler.postDelayed(mTimerUpdate, 1000);
@@ -400,7 +404,7 @@ public class PlayActivity extends AppCompatActivity {
     }
 
     private void gameOver(){
-        //todo this method is blank and shouldn't be
+
         mTimerView.setText("GAME OVER");
         mHandler.postDelayed(mTimerUpdate, 1000);
     }
