@@ -1,5 +1,6 @@
 package theultimatedomain.com.moosecat;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -24,13 +25,13 @@ public class PlayActivity extends AppCompatActivity {
     private ImageView mMooseCat;
     private TextView mScoreText;
     private TextView mLivesText;
-    private boolean mCorrectInput;
+    private int mCorrectInput;
     private boolean mSwipe;
     private int mDelay = 3000;
     private int mScore = 0;
     private int mLives = 3;
     private int value;
-    private int[] images = new int[] {R.drawable.cat, R.drawable.moose};
+    private int[] images = new int[] {R.drawable.cat2, R.drawable.moose, R.drawable.moosecat};
     private float mDownX;
     private float mDownY;
     private final float SCROLL_THRESHOLD = 10;
@@ -38,6 +39,7 @@ public class PlayActivity extends AppCompatActivity {
     private Handler mImageHandler;
     private int swipeLeft = 0;
     private int swipeRight = 1;
+    public static final String mScoreKey = "mScoreKey";
     //a swipe up or down will be given the value of 2, and a life will be removed
 
     @Override
@@ -173,45 +175,61 @@ public class PlayActivity extends AppCompatActivity {
 
     private void checkUserInput(int input)
     {
-        if(mCorrectInput)
-            //correct input is swipe, picture is moose
-        {
-            if (input == 0) {
-                mScore++;
+        if(input == mCorrectInput) {
+            mScore++;
                 mScoreText.setText(String.valueOf(mScore));
                 randomImage();
                 mImageHandler.removeCallbacks(mImageTimer);
                 mImageHandler.postDelayed(mImageTimer, mDelay);
-            } else {
+        } else {
                 mLives--;
                 mLivesText.setText(String.valueOf(mLives));
                 randomImage();
                 mImageHandler.removeCallbacks(mImageTimer);
                 mImageHandler.postDelayed(mImageTimer, mDelay);
-            }
         }
-        else
-        {
-            if(input == 1)
-            {
-                mScore++;
-                mScoreText.setText(String.valueOf(mScore));
-                randomImage();
-                mImageHandler.removeCallbacks(mImageTimer);
-                mImageHandler.postDelayed(mImageTimer, mDelay);
-            }
-            else
-            {
-                mLives--;
-                mLivesText.setText(String.valueOf(mLives));
-                randomImage();
-                mImageHandler.removeCallbacks(mImageTimer);
-                mImageHandler.postDelayed(mImageTimer, mDelay);
-            }
-        }
-        if (mScore == 0)
+//        if(mCorrectInput)
+//            //correct input is swipe, picture is moose
+//        {
+//            if (input == 0) {
+//                mScore++;
+//                mScoreText.setText(String.valueOf(mScore));
+//                randomImage();
+//                mImageHandler.removeCallbacks(mImageTimer);
+//                mImageHandler.postDelayed(mImageTimer, mDelay);
+//            } else {
+//                mLives--;
+//                mLivesText.setText(String.valueOf(mLives));
+//                randomImage();
+//                mImageHandler.removeCallbacks(mImageTimer);
+//                mImageHandler.postDelayed(mImageTimer, mDelay);
+//            }
+//        }
+//        else
+//        {
+//            if(input == 1)
+//            {
+//                mScore++;
+//                mScoreText.setText(String.valueOf(mScore));
+//                randomImage();
+//                mImageHandler.removeCallbacks(mImageTimer);
+//                mImageHandler.postDelayed(mImageTimer, mDelay);
+//            }
+//            else
+//            {
+//                mLives--;
+//                mLivesText.setText(String.valueOf(mLives));
+//                randomImage();
+//                mImageHandler.removeCallbacks(mImageTimer);
+//                mImageHandler.postDelayed(mImageTimer, mDelay);
+//            }
+//        }
+        if(mLives == 0)
         {
             //Game over code
+            Intent intent = new Intent(PlayActivity.this, GameOverActivity.class);
+            intent.putExtra(mScoreKey, mScore);
+            startActivity(intent);
         }
 
 //        if(mSwipe == true && input == mCorrectInput)
@@ -254,15 +272,15 @@ public class PlayActivity extends AppCompatActivity {
         mMooseCat.setBackgroundResource(images[value]);
         mMooseCat.startAnimation(fadeIn);
         //moose is #1
-        if(value == 1)
-        {
-            //moose is swipe
-            mCorrectInput = true;
-        }
-        else{
-            //cat is tap
-            mCorrectInput = false;
-        }
+//        if(value == 1)
+//        {
+//            //moose is swipe
+//            mCorrectInput = true;
+//        }
+//        else{
+//            //cat is tap
+//            mCorrectInput = false;
+//        }
     }
 
     private Runnable mImageTimer = new Runnable() {
