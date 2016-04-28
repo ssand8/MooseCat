@@ -3,6 +3,7 @@ package theultimatedomain.com.moosecat;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -42,34 +43,54 @@ public class PlayActivity extends AppCompatActivity {
     public static final String mScoreKey = "mScoreKey";
     //a swipe up or down will be given the value of 2, and a life will be removed
 
+
+    private int mTotalLives = 4;
+
+
+    private TextView mTimerView;
+    private double mStartTime;
+
+    private Handler mHandler;
+
+
+
+    public static final String START_TIME_KEY = "Start_time:";
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play);
 
-        mImageHandler = new Handler();
-
         setupUI();
         setupClickListeners();
+
+        mHandler = new Handler();
+        mStartTime = 60;
+
+
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-
-        mImageHandler.post(mImageTimer);
+        mHandler.post(mTimerUpdate);
+        mHandler.post(mImageTimer);
     }
+
 
     @Override
     protected void onPause() {
         super.onPause();
 
-        mImageHandler.removeCallbacks(mImageTimer);
+        mHandler.removeCallbacks(mTimerUpdate);
+        mHandler.removeCallbacks(mImageTimer);
     }
+
 
     private void setupUI()
     {
         mMooseCat = (ImageView) findViewById(R.id.moose_cat_img);
+        mTimerView = (TextView) findViewById(R.id.timer_view);
         mScoreText = (TextView) findViewById(R.id.score_text);
         mLivesText = (TextView) findViewById(R.id.lives_text);
 
@@ -288,7 +309,7 @@ public class PlayActivity extends AppCompatActivity {
         public void run() {
             randomImage();
 
-            mImageHandler.postDelayed(mImageTimer, mDelay);
+            mHandler.postDelayed(mImageTimer, mDelay);
         }
     };
 
@@ -313,4 +334,77 @@ public class PlayActivity extends AppCompatActivity {
             mMooseCat.setImageResource(R.drawable.moose_cat);
         }
     }
+
+    private Runnable mTimerUpdate = new Runnable() {
+        @Override
+        public void run() {
+            if (mStartTime > 0){
+                mStartTime -= 1;
+
+                mTimerView.setText(getFormattedtime(mStartTime));
+
+                mHandler.postDelayed(mTimerUpdate, 1000);
+            }
+
+
+
+
+        }
+    };
+
+
+    private String getFormattedtime(double timeInSeconds){
+
+        String result = "";
+        int minutes = 0;
+        int seconds = 0;
+
+        //logic
+
+        minutes = (int) (timeInSeconds / 60);
+        seconds = (int) (timeInSeconds % 60);
+
+        if (minutes > 9)
+        {
+            result += minutes;
+        }
+        else{
+            result += "0" + minutes;
+        }
+        result += " : ";
+        if (seconds > 9){
+            result += seconds;
+        }
+        else
+        {
+            result += "0" + seconds;
+        }
+
+        return result;
+    }
+
+
+
+    private void lifeLost(){
+        mTotalLives = mTotalLives - 1;
+        checkLives();
+    }
+
+
+
+    private void checkLives(){
+        if (mTotalLives == 0)
+        {
+            gameOver();
+        }
+    }
+
+    private void gameOver(){
+        //todo this method is blank and shouldn't be
+        mTimerView.setText("GAME OVER");
+        mHandler.postDelayed(mTimerUpdate, 1000);
+    }
+
+
+
 }

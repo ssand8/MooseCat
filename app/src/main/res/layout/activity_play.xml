@@ -64,4 +64,18 @@
     </LinearLayout>
 
 
+    <TextView
+        android:id="@+id/timer_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:text="00:00"
+        android:textSize="200px"
+        android:textColor="#504550"
+        android:padding="50px"
+        android:textAlignment="center"/>
+
+
+
 </RelativeLayout>
+
