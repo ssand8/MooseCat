@@ -13,24 +13,6 @@
         android:background="@drawable/timer_background"
         android:id="@+id/timer">
 
-        <!--<TextView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_toLeftOf="@+id/score_text"-->
-            <!--android:textSize="48sp"-->
-            <!--android:textColor="#FF0000"-->
-            <!--android:textStyle="bold"-->
-            <!--android:text="Score:" />-->
-
-        <!--<TextView-->
-            <!--android:id="@+id/score_text"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_centerHorizontal="true"-->
-            <!--android:textSize="48sp"-->
-            <!--android:textStyle="bold"-->
-            <!--android:text="0"/>-->
-
         <TextView
             android:id="@+id/timer_view"
             android:layout_width="match_parent"
@@ -61,13 +43,12 @@
         android:layout_height="280dp"
         android:layout_alignBottom="@id/blue_view"
         android:layout_centerInParent="true"
-        android:src="@drawable/moose"
         android:scaleType="centerInside"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="6dp"
         android:layout_marginTop="30dp"
         android:layout_below="@+id/blue_view"
         android:gravity="center_horizontal"
@@ -76,12 +57,14 @@
         android:id="@+id/lives_layout">
 
         <TextView
+            android:id="@+id/score_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
             android:textSize="48sp"
             android:textStyle="bold"
             android:textColor="#FFFFFF"
-            android:text="Lives:"/>
+            android:text="955000"/>
 
         <TextView
             android:id="@+id/lives_text"
@@ -106,25 +89,30 @@
             android:layout_width="64dp"
             android:layout_height="64dp"
             android:layout_margin="5dp"
-            android:background="@drawable/active_life"/>
+            android:background="@drawable/active_life"
+            android:id="@+id/life_one"/>
 
         <View
             android:layout_width="64dp"
             android:layout_height="64dp"
             android:layout_margin="5dp"
-            android:background="@drawable/active_life"/>
+            android:background="@drawable/active_life"
+            android:id="@+id/life_two"/>
 
         <View
             android:layout_width="64dp"
             android:layout_height="64dp"
             android:layout_margin="5dp"
-            android:background="@drawable/active_life"/>
+            android:background="@drawable/active_life"
+            android:id="@+id/life_three"/>
 
         <View
             android:layout_width="64dp"
             android:layout_height="64dp"
             android:layout_margin="5dp"
-            android:background="@drawable/active_life"/>
+            android:background="@drawable/active_life"
+            android:id="@+id/life_four"/>
+
     </LinearLayout>
 
 </RelativeLayout>

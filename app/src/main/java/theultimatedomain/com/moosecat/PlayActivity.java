@@ -30,7 +30,7 @@ public class PlayActivity extends AppCompatActivity {
     private boolean mSwipe;
     private int mDelay = 3000;
     private int mScore = 0;
-    private int mLives = 3;
+    private int mLives = 4;
     private int value;
     private int[] images = new int[] {R.drawable.cat2, R.drawable.moose, R.drawable.moosecat};
     private float mDownX;
@@ -45,6 +45,10 @@ public class PlayActivity extends AppCompatActivity {
 
 
     private int mTotalLives = 4;
+    private View mLifeOne;
+    private View mLifeTwo;
+    private View mLifeThree;
+    private View mLifeFour;
 
 
     private TextView mTimerView;
@@ -93,6 +97,10 @@ public class PlayActivity extends AppCompatActivity {
         mTimerView = (TextView) findViewById(R.id.timer_view);
         mScoreText = (TextView) findViewById(R.id.score_text);
         mLivesText = (TextView) findViewById(R.id.lives_text);
+        mLifeOne = (View) findViewById(R.id.life_one);
+        mLifeTwo = (View) findViewById(R.id.life_two);
+        mLifeThree = (View) findViewById(R.id.life_three);
+        mLifeFour = (View) findViewById(R.id.life_four);
 
     }
 
@@ -394,6 +402,20 @@ public class PlayActivity extends AppCompatActivity {
         checkLives();
     }
 
+    private void changeLife() {
+        if (mTotalLives == 3) {
+            mLifeFour.setBackgroundResource(R.drawable.dead_life);
+        } else if (mTotalLives == 2) {
+            mLifeThree.setBackgroundResource(R.drawable.dead_life);
+        } else if (mTotalLives == 1) {
+            mLifeTwo.setBackgroundResource(R.drawable.dead_life);
+        } else if (mTotalLives ==0) {
+            mLifeOne.setBackgroundResource(R.drawable.dead_life);
+        }
+
+        checkLives();
+    }
+
 
 
     private void checkLives(){
@@ -402,6 +424,7 @@ public class PlayActivity extends AppCompatActivity {
             gameOver();
         }
     }
+
 
     private void gameOver(){
 
