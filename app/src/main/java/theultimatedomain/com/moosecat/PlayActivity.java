@@ -41,6 +41,7 @@ public class PlayActivity extends AppCompatActivity {
     private int swipeLeft = 0;
     private int swipeRight = 1;
     public static final String mScoreKey = "mScoreKey";
+    public String mScoreString;
     //a swipe up or down will be given the value of 2, and a life will be removed
 
 
@@ -102,6 +103,7 @@ public class PlayActivity extends AppCompatActivity {
         mLifeThree = (View) findViewById(R.id.life_three);
         mLifeFour = (View) findViewById(R.id.life_four);
 
+        mLivesText.setText(String.valueOf(mLives));
     }
 
 
@@ -162,7 +164,7 @@ public class PlayActivity extends AppCompatActivity {
             public void onSwipeTop() {
                 Toast.makeText(PlayActivity.this, "top", Toast.LENGTH_SHORT).show();
                 mSwipe = true;
-                checkUserInput(2);
+                checkUserInput(3);
             }
             public void onSwipeRight() {
                 Toast.makeText(PlayActivity.this, "right", Toast.LENGTH_SHORT).show();
@@ -172,12 +174,12 @@ public class PlayActivity extends AppCompatActivity {
             public void onSwipeLeft() {
                 Toast.makeText(PlayActivity.this, "left", Toast.LENGTH_SHORT).show();
                 mSwipe = true;
-                checkUserInput(0);
+                checkUserInput(2);
             }
             public void onSwipeBottom() {
                 Toast.makeText(PlayActivity.this, "bottom", Toast.LENGTH_SHORT).show();
                 mSwipe = true;
-                checkUserInput(2);
+                checkUserInput(0);
             }
 
 
@@ -204,19 +206,35 @@ public class PlayActivity extends AppCompatActivity {
 
     private void checkUserInput(int input)
     {
+
+
         if(input == mCorrectInput) {
-            mScore++;
+            mScore = mScore + 100;
                 mScoreText.setText(String.valueOf(mScore));
                 randomImage();
-                mImageHandler.removeCallbacks(mImageTimer);
-                mImageHandler.postDelayed(mImageTimer, mDelay);
+                mHandler.removeCallbacks(mImageTimer);
+                mHandler.postDelayed(mImageTimer, mDelay);
         } else {
                 mLives--;
+                changeLife();
                 mLivesText.setText(String.valueOf(mLives));
                 randomImage();
-                mImageHandler.removeCallbacks(mImageTimer);
-                mImageHandler.postDelayed(mImageTimer, mDelay);
+                mHandler.removeCallbacks(mImageTimer);
+                mHandler.postDelayed(mImageTimer, mDelay);
+                if(mLives == 0)
+                {
+                    mScoreString = String.valueOf(mScore);
+                    //Game over code
+                    Intent intent = new Intent(PlayActivity.this, GameOverActivity.class);
+                    intent.putExtra(mScoreKey, mScoreString);
+                    startActivity(intent);
+                    overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                    finish();
+                }
         }
+
+
+
 //        if(mCorrectInput)
 //            //correct input is swipe, picture is moose
 //        {
@@ -224,14 +242,14 @@ public class PlayActivity extends AppCompatActivity {
 //                mScore++;
 //                mScoreText.setText(String.valueOf(mScore));
 //                randomImage();
-//                mImageHandler.removeCallbacks(mImageTimer);
-//                mImageHandler.postDelayed(mImageTimer, mDelay);
+//                mHandler.removeCallbacks(mImageTimer);
+//                mHandler.postDelayed(mImageTimer, mDelay);
 //            } else {
 //                mLives--;
 //                mLivesText.setText(String.valueOf(mLives));
 //                randomImage();
-//                mImageHandler.removeCallbacks(mImageTimer);
-//                mImageHandler.postDelayed(mImageTimer, mDelay);
+//                mHandler.removeCallbacks(mImageTimer);
+//                mHandler.postDelayed(mImageTimer, mDelay);
 //            }
 //        }
 //        else
@@ -241,25 +259,19 @@ public class PlayActivity extends AppCompatActivity {
 //                mScore++;
 //                mScoreText.setText(String.valueOf(mScore));
 //                randomImage();
-//                mImageHandler.removeCallbacks(mImageTimer);
-//                mImageHandler.postDelayed(mImageTimer, mDelay);
+//                mHandler.removeCallbacks(mImageTimer);
+//                mHandler.postDelayed(mImageTimer, mDelay);
 //            }
 //            else
 //            {
 //                mLives--;
 //                mLivesText.setText(String.valueOf(mLives));
 //                randomImage();
-//                mImageHandler.removeCallbacks(mImageTimer);
-//                mImageHandler.postDelayed(mImageTimer, mDelay);
+//                mHandler.removeCallbacks(mImageTimer);
+//                mHandler.postDelayed(mImageTimer, mDelay);
 //            }
 //        }
-        if(mLives == 0)
-        {
-            //Game over code
-            Intent intent = new Intent(PlayActivity.this, GameOverActivity.class);
-            intent.putExtra(mScoreKey, mScore);
-            startActivity(intent);
-        }
+
 
 //        if(mSwipe == true && input == mCorrectInput)
 //        {
@@ -396,20 +408,20 @@ public class PlayActivity extends AppCompatActivity {
     }
 
 
-
-    private void lifeLost(){
-        mTotalLives = mTotalLives - 1;
-        checkLives();
-    }
+//
+//    private void lifeLost(){
+//        mLives = mLives - 1;
+//        checkLives();
+//    }
 
     private void changeLife() {
-        if (mTotalLives == 3) {
+        if (mLives == 3) {
             mLifeFour.setBackgroundResource(R.drawable.dead_life);
-        } else if (mTotalLives == 2) {
+        } else if (mLives == 2) {
             mLifeThree.setBackgroundResource(R.drawable.dead_life);
-        } else if (mTotalLives == 1) {
+        } else if (mLives == 1) {
             mLifeTwo.setBackgroundResource(R.drawable.dead_life);
-        } else if (mTotalLives ==0) {
+        } else if (mLives ==0) {
             mLifeOne.setBackgroundResource(R.drawable.dead_life);
         }
 
@@ -419,7 +431,7 @@ public class PlayActivity extends AppCompatActivity {
 
 
     private void checkLives(){
-        if (mTotalLives == 0)
+        if (mLives == 0)
         {
             gameOver();
         }

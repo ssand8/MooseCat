@@ -64,7 +64,7 @@
             android:textSize="48sp"
             android:textStyle="bold"
             android:textColor="#FFFFFF"
-            android:text="955000"/>
+            android:text=""/>
 
         <TextView
             android:id="@+id/lives_text"
