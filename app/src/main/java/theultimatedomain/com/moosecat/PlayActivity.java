@@ -162,22 +162,22 @@ public class PlayActivity extends AppCompatActivity {
 
         mMooseCat.setOnTouchListener(new OnSwipeTouchListener(PlayActivity.this) {
             public void onSwipeTop() {
-                Toast.makeText(PlayActivity.this, "top", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(PlayActivity.this, "top", Toast.LENGTH_SHORT).show();
                 mSwipe = true;
                 checkUserInput(2);
             }
             public void onSwipeRight() {
-                Toast.makeText(PlayActivity.this, "right", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(PlayActivity.this, "right", Toast.LENGTH_SHORT).show();
                 mSwipe = true;
                 checkUserInput(1);
             }
             public void onSwipeLeft() {
-                Toast.makeText(PlayActivity.this, "left", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(PlayActivity.this, "left", Toast.LENGTH_SHORT).show();
                 mSwipe = true;
                 checkUserInput(0);
             }
             public void onSwipeBottom() {
-                Toast.makeText(PlayActivity.this, "bottom", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(PlayActivity.this, "bottom", Toast.LENGTH_SHORT).show();
                 mSwipe = true;
                 checkUserInput(3);
             }

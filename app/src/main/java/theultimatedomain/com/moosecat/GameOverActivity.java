@@ -1,5 +1,6 @@
 package theultimatedomain.com.moosecat;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -17,6 +18,7 @@ public class GameOverActivity extends AppCompatActivity {
     private TextView mScoreText;
     private ImageView mImageView;
     private Button mCheat;
+    private boolean mJoe = false;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -29,6 +31,8 @@ public class GameOverActivity extends AppCompatActivity {
         mScoreText = (TextView) findViewById(R.id.score_text);
         mScoreText.setText(String.valueOf(mScore));
         mCheat = (Button) findViewById(R.id.cheat_btn);
+        mCheat.setVisibility(View.VISIBLE);
+        mCheat.setBackgroundColor(Color.TRANSPARENT);
         setupClickListeners();
     }
 
@@ -37,7 +41,16 @@ public class GameOverActivity extends AppCompatActivity {
         mCheat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mScoreText.setText(R.string.joesucks);
+                if(mJoe == false)
+                {
+                    mScoreText.setText(R.string.joesucks);
+                    mJoe = true;
+                }else
+                {
+                    mScoreText.setText(String.valueOf(mScore));
+                    mJoe = false;
+                }
+
             }
         });
     }
