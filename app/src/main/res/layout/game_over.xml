@@ -21,4 +21,17 @@
         android:layout_centerHorizontal="true"
         android:textSize="48sp" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Button"
+        android:id="@+id/cheat_btn"
+        android:visibility="invisible"
+        android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/score_text"
+        android:layout_alignStart="@+id/score_text"
+        android:layout_marginTop="45dp"
+        android:layout_alignRight="@+id/score_text"
+        android:layout_alignEnd="@+id/score_text" />
+
 </RelativeLayout>

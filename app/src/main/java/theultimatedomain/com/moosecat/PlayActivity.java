@@ -30,7 +30,7 @@ public class PlayActivity extends AppCompatActivity {
     private boolean mSwipe;
     private int mDelay = 3000;
     private int mScore = 0;
-    private int mLives = 4;
+    private int mLives = 5;
     private int value;
     private int[] images = new int[] {R.drawable.cat2, R.drawable.moose, R.drawable.moosecat};
     private float mDownX;
@@ -97,13 +97,13 @@ public class PlayActivity extends AppCompatActivity {
         mMooseCat = (ImageView) findViewById(R.id.moose_cat_img);
         mTimerView = (TextView) findViewById(R.id.timer_view);
         mScoreText = (TextView) findViewById(R.id.score_text);
-        mLivesText = (TextView) findViewById(R.id.lives_text);
+       // mLivesText = (TextView) findViewById(R.id.lives_text);
         mLifeOne = (View) findViewById(R.id.life_one);
         mLifeTwo = (View) findViewById(R.id.life_two);
         mLifeThree = (View) findViewById(R.id.life_three);
         mLifeFour = (View) findViewById(R.id.life_four);
 
-        mLivesText.setText(String.valueOf(mLives));
+//        mLivesText.setText(String.valueOf(mLives));
     }
 
 
@@ -164,7 +164,7 @@ public class PlayActivity extends AppCompatActivity {
             public void onSwipeTop() {
                 Toast.makeText(PlayActivity.this, "top", Toast.LENGTH_SHORT).show();
                 mSwipe = true;
-                checkUserInput(3);
+                checkUserInput(2);
             }
             public void onSwipeRight() {
                 Toast.makeText(PlayActivity.this, "right", Toast.LENGTH_SHORT).show();
@@ -174,12 +174,12 @@ public class PlayActivity extends AppCompatActivity {
             public void onSwipeLeft() {
                 Toast.makeText(PlayActivity.this, "left", Toast.LENGTH_SHORT).show();
                 mSwipe = true;
-                checkUserInput(2);
+                checkUserInput(0);
             }
             public void onSwipeBottom() {
                 Toast.makeText(PlayActivity.this, "bottom", Toast.LENGTH_SHORT).show();
                 mSwipe = true;
-                checkUserInput(0);
+                checkUserInput(3);
             }
 
 
@@ -215,22 +215,17 @@ public class PlayActivity extends AppCompatActivity {
                 mHandler.removeCallbacks(mImageTimer);
                 mHandler.postDelayed(mImageTimer, mDelay);
         } else {
-                mLives--;
-                changeLife();
-                mLivesText.setText(String.valueOf(mLives));
+//                mLives--;
+//                changeLife();
+//                mLivesText.setText(String.valueOf(mLives));
+                removeLife();
                 randomImage();
                 mHandler.removeCallbacks(mImageTimer);
                 mHandler.postDelayed(mImageTimer, mDelay);
-                if(mLives == 0)
-                {
-                    mScoreString = String.valueOf(mScore);
-                    //Game over code
-                    Intent intent = new Intent(PlayActivity.this, GameOverActivity.class);
-                    intent.putExtra(mScoreKey, mScoreString);
-                    startActivity(intent);
-                    overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-                    finish();
-                }
+//                if(mLives == 0)
+//                {
+//                    gameOver();
+//                }
         }
 
 
@@ -302,16 +297,48 @@ public class PlayActivity extends AppCompatActivity {
 
 
     }
+    private void gameOver()
+    {
+        mScoreString = String.valueOf(mScore);
+        //Game over code
+        Intent intent = new Intent(PlayActivity.this, GameOverActivity.class);
+        intent.putExtra(mScoreKey, mScoreString);
+        startActivity(intent);
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+        finish();
+    }
+
+    private void removeLife()
+    {
+        mLives--;
+        changeLife();
+//        mLivesText.setText(String.valueOf(mLives));
+        if(mLives == 0)
+        {
+            gameOver();
+        }
+    }
+
 
     private void randomImage()
     {
         System.gc();
        // int value = Math.round((int) (Math.random() * 2));
         Random R = new Random();
-        value = R.nextInt(2);
+        value = R.nextInt(3);
         Animation fadeIn = AnimationUtils.loadAnimation(PlayActivity.this, theultimatedomain.com.moosecat.R.anim.fade_in);
         mMooseCat.setBackgroundResource(images[value]);
         mMooseCat.startAnimation(fadeIn);
+        if (value == 0) {
+            //cat is value 1 which is swipe right
+            mCorrectInput = 0;
+        } else if (value == 1) {
+            //moose is value 2 which is swipe left
+            mCorrectInput = 1;
+        } else if (value == 2) {
+            //moosecat is value 3 which is swipe up
+            mCorrectInput = 2;
+        }
         //moose is #1
 //        if(value == 1)
 //        {
@@ -328,7 +355,7 @@ public class PlayActivity extends AppCompatActivity {
         @Override
         public void run() {
             randomImage();
-
+            removeLife();
             mHandler.postDelayed(mImageTimer, mDelay);
         }
     };
@@ -342,15 +369,18 @@ public class PlayActivity extends AppCompatActivity {
 
         if (value == 1) {
             mMooseCat.startAnimation(fadeIn);
-
+            //cat is value 1 which is swipe right
+            mCorrectInput = 1;
             mMooseCat.setImageResource(R.drawable.cat);
         } else if (value == 2) {
             mMooseCat.startAnimation(fadeIn);
-
+            //moose is value 2 which is swipe left
+            mCorrectInput = 2;
             mMooseCat.setImageResource(R.drawable.moose);
         } else if (value == 3) {
             mMooseCat.startAnimation(fadeIn);
-
+            //moosecat is value 3 which is swipe up
+            mCorrectInput = 3;
             mMooseCat.setImageResource(R.drawable.moosecat);
         }
     }
@@ -425,24 +455,24 @@ public class PlayActivity extends AppCompatActivity {
             mLifeOne.setBackgroundResource(R.drawable.dead_life);
         }
 
-        checkLives();
+//        checkLives();
     }
 
 
 
-    private void checkLives(){
-        if (mLives == 0)
-        {
-            gameOver();
-        }
-    }
+//    private void checkLives(){
+//        if (mLives == 0)
+//        {
+//            gameOver();
+//        }
+//    }
 
 
-    private void gameOver(){
-
-        mTimerView.setText("GAME OVER");
-        mHandler.postDelayed(mTimerUpdate, 1000);
-    }
+//    private void gameOver(){
+//
+//        mTimerView.setText("GAME OVER");
+//        mHandler.postDelayed(mTimerUpdate, 1000);
+//    }
 
 
 

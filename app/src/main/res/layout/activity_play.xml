@@ -33,17 +33,17 @@
         android:layout_height="210dp"
         android:layout_below="@id/timer"
         android:layout_marginTop="45dp"
-        android:src="@drawable/blue_square"
+        android:background="#123456"
         android:scaleType="centerCrop"
         android:id="@+id/blue_view"/>
 
     <ImageView
         android:id="@+id/moose_cat_img"
-        android:layout_width="wrap_content"
+        android:layout_width="320dp"
         android:layout_height="280dp"
         android:layout_alignBottom="@id/blue_view"
         android:layout_centerInParent="true"
-        android:scaleType="centerInside"/>
+        android:scaleType="fitXY"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -66,15 +66,15 @@
             android:textColor="#FFFFFF"
             android:text=""/>
 
-        <TextView
-            android:id="@+id/lives_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:textSize="48sp"
-            android:textStyle="bold"
-            android:textColor="#FFFFFF"
-            android:text="0"/>
+        <!--<TextView-->
+            <!--android:id="@+id/lives_text"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_centerHorizontal="true"-->
+            <!--android:textSize="48sp"-->
+            <!--android:textStyle="bold"-->
+            <!--android:textColor="#FFFFFF"-->
+            <!--android:text="0"/>-->
 
     </LinearLayout>
 
@@ -83,7 +83,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/lives_layout"
         android:orientation="horizontal"
-        android:gravity="center">
+        android:gravity="center"
+        android:layout_alignParentBottom="true">
 
         <View
             android:layout_width="64dp"

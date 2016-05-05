@@ -7,7 +7,7 @@
     android:paddingRight="0px"
     android:paddingLeft="0px"
     android:paddingTop="50px"
-    android:background="@drawable/Start_Screen_Wood">
+    android:background="@drawable/start_screen_wood">
 
     <TextView
         android:layout_width="match_parent"
@@ -35,24 +35,24 @@
 
     <ImageView
         android:id="@+id/cat"
-        android:layout_width="120"
-        android:layout_height="120"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
         android:background="@drawable/cat2"
         android:layout_marginLeft="40px"/>
 
 
     <ImageView
         android:id="@+id/moose"
-        android:layout_width="120"
-        android:layout_height="120"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
         android:background="@drawable/moose"
         android:layout_below="@+id/cat"
         android:layout_marginLeft="40px"/>
 
     <ImageView
         android:id="@+id/moose_cat"
-        android:layout_width="120"
-        android:layout_height="120"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
         android:background="@drawable/moosecat"
         android:layout_below="@+id/moose"
         android:layout_marginLeft="40px"/>
@@ -61,7 +61,7 @@
         android:id="@+id/cat_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="SWIPE UP"
+        android:text="SWIPE LEFT"
         android:textSize="65px"
         android:layout_toRightOf="@+id/cat"
         android:layout_alignBottom="@+id/cat"
@@ -75,7 +75,7 @@
         android:id="@+id/moose_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="SWIPE DOWN"
+        android:text="SWIPE RIGHT"
         android:textSize="65px"
         android:layout_toRightOf="@+id/moose"
         android:layout_alignBottom="@+id/moose"
@@ -88,7 +88,7 @@
         android:id="@+id/moose_cat__text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="SWIPE BOTH"
+        android:text="SWIPE UP"
         android:textSize="65px"
         android:layout_toRightOf="@+id/moose_cat"
         android:layout_alignBottom="@+id/moose_cat"

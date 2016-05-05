@@ -11,7 +11,7 @@ import android.widget.Button;
 public class MainActivity extends AppCompatActivity {
 
     private Button mPlay;
-    private Button mOptions;
+    private Button mInstructions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private void setupUI()
     {
         mPlay = (Button) findViewById(R.id.play_btn);
-        mOptions = (Button) findViewById(R.id.options_btn);
+        mInstructions = (Button) findViewById(R.id.instructions_btn);
     }
 
     private void setupClickListeners()
@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        mOptions.setOnClickListener(new View.OnClickListener() {
+        mInstructions.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, InstructionsActivity.class);
