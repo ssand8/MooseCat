@@ -444,6 +444,7 @@ public class PlayActivity extends AppCompatActivity {
 //        checkLives();
 //    }
 
+    // changeLife() is supposed to update the life circles at the bottom of activity_play.xml
     private void changeLife() {
         if (mLives == 3) {
             mLifeFour.setBackgroundResource(R.drawable.dead_life);

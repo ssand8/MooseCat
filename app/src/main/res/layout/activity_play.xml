@@ -78,13 +78,13 @@
 
     </LinearLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/lives_layout"
+        android:layout_alignParentBottom="true"
         android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_alignParentBottom="true">
+        android:gravity="center">
 
         <View
             android:layout_width="64dp"
@@ -96,6 +96,7 @@
         <View
             android:layout_width="64dp"
             android:layout_height="64dp"
+            android:layout_toRightOf="@id/life_one"
             android:layout_margin="5dp"
             android:background="@drawable/active_life"
             android:id="@+id/life_two"/>
@@ -103,6 +104,7 @@
         <View
             android:layout_width="64dp"
             android:layout_height="64dp"
+            android:layout_toRightOf="@id/life_two"
             android:layout_margin="5dp"
             android:background="@drawable/active_life"
             android:id="@+id/life_three"/>
@@ -110,11 +112,12 @@
         <View
             android:layout_width="64dp"
             android:layout_height="64dp"
+            android:layout_toRightOf="@id/life_three"
             android:layout_margin="5dp"
             android:background="@drawable/active_life"
             android:id="@+id/life_four"/>
 
-    </LinearLayout>
+    </RelativeLayout>
 
 </RelativeLayout>
 

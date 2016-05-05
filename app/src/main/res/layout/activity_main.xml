@@ -4,41 +4,57 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="theultimatedomain.com.moosecat.MainActivity"
     android:background="@drawable/start_screen_wood">
 
-    <TextView
+    <ImageView
         android:id="@+id/title"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="JOE SUCKS"
+        android:layout_height="150dp"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:scaleType="fitXY"
         android:layout_centerHorizontal="true"
-        android:textSize="48sp"
-        android:textStyle="bold"
-        android:textColor="#000000"/>
+        android:src="@drawable/moosecat_title"/>
+
+    <ImageView
+        android:id="@+id/blue_start"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_below="@id/title"
+        android:scaleType="fitXY"
+        android:src="@drawable/start_screen_blue"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_alignBottom="@id/blue_start"
+        android:layout_marginBottom="6dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/moosecat"/>
 
     <Button
         android:id="@+id/play_btn"
-        android:layout_below="@+id/title"
+        android:layout_below="@+id/blue_start"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="64dp"
-        android:layout_width="200dp"
+        android:layout_marginTop="8dp"
+        android:layout_width="match_parent"
         android:layout_height="80dp"
         android:text="PLAY"
         android:textSize="32sp"
-        android:background="@drawable/button_selector"/>
+        android:textColor="#FFFFFF"
+        android:background="#000000"/>
 
     <Button
         android:id="@+id/instructions_btn"
         android:layout_below="@+id/play_btn"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="24dp"
-        android:layout_width="200dp"
+        android:layout_marginTop="8dp"
+        android:layout_width="match_parent"
         android:layout_height="80dp"
         android:text="Instructions"
-        android:textSize="24sp"
-        android:background="@drawable/button_selector"/>
+        android:textSize="32sp"
+        android:textColor="#FFFFFF"
+        android:background="#000000"/>
 </RelativeLayout>
